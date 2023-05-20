@@ -1,30 +1,55 @@
 ---
 import { Icon } from "astro-icon";
 import ContentSection from "~/components/content-section.astro";
+
+
+import video from "../assets/logo.mp4";
 ---
 
-<ContentSection title="Vertix AeroSpace" id="intro">
-  <Icon slot="eyebrow" name="logomark" class="h-32" />
-  <Fragment slot="lead">
-    Astro is a new kind of site builder for the
-    <span class="text-primary">modern</span> web.
-    <span class="text-primary">Lightning-fast</span>
-    performance meets <span class="text-primary">powerful</span> developer experience.
-  </Fragment>
-  <div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
-    <a
-      href="https://docs.astro.build/"
-      class="flex items-center justify-center gap-3 border-2 border-current px-6 py-4"
-    >
-      <Icon pack="mdi" name="telescope" class="h-8" />
-      <span>Read the docs</span>
-    </a>
-    <a
-      href="https://astro.new/"
-      class="flex items-center justify-center gap-3 border-2 border-current px-6 py-4"
-    >
-      <Icon pack="mdi" name="rocket" class="h-8" />
-      <span>Try it out</span>
-    </a>
+
+
+
+<section class="min-h-screen relative flex flex-1 items-center bottom-32 justify-center overflow-hidden remove-gap">
+  <!-- video - start -->
+  <video class="absolute inset-0 w-full h-full object-cover" autoplay loop muted>
+    <source src={video} type="video/mp4">
+  </video>
+  <!-- video - end -->
+
+  <!-- overlay - start -->
+  <div class="absolute inset-0 bg-opacity-50 bg-black"></div>
+  <!-- overlay - end -->
+
+  <!-- content - start -->
+  <div class="relative z-10">
+    <h1 class="font-custom text-4xl font-bold">The sky is not the limit, it's just the beginning.</h1>
   </div>
-</ContentSection>
+  <!-- content - end -->
+</section>
+
+<style>
+.remove-gap {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: -30px;
+  margin-right: -30px;
+  border-top: 2px solid #ffff; /* Add thin border to the top */
+    border-bottom: 2px solid #ffff; /* Add thin border to the bottom */
+}
+
+
+
+@media (max-width: 768px) {
+  .remove-gap {
+    margin-left: -2rem;
+    margin-right: -2rem;
+    border-top: 2px solid #ffff; /* Add thin border to the top */
+    border-bottom: 2px solid #ffff; /* Add thin border to the bottom */
+  }
+  .font-custom {
+    font-size: 2rem;
+    text-align: center;
+    
+  }
+}
+</style>

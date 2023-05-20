@@ -1,7 +1,9 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
+
   content: ["./src/**/*.{astro,html,js,jsx,svelte,ts,tsx,vue}"],
+  plugins: [require('daisyui')],
   theme: {
     extend: {
       fontFamily: {
@@ -22,6 +24,7 @@ module.exports = {
       borderColor: {
         default: "var(--color-border)",
       },
+
     },
   },
   corePlugins: {

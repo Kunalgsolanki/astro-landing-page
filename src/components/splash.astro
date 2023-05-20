@@ -5,14 +5,23 @@ import astronautImage from "~/assets/astronaut.png";
 import HeroImage from "~/components/hero-image.astro";
 import Starfield from "~/components/starfield.astro";
 import GitHubCorner from "./github-corner.astro";
+import moonImage from "~/assets/logo.png";
+import backgroundVideo  from "../assets/word.mp4";
+
 
 const widths = [450, 800];
-const sizes = "(min-width: 640px) 42vw, 67vw";
+const sizes = "(min-width: 640px) 30vw, 57vw";
+
 ---
 
 <section class="relative h-full bg-black">
-  <Starfield />
-  <GitHubCorner />
+  <div id="background-video" class="relative h-full bg-black">
+    <video autoplay muted loop class="absolute inset-0 w-full h-full object-cover">
+      <source src={backgroundVideo} type="video/mp4" />
+    </video>
+  <!-- <Starfield /> -->
+
+  <!-- <GitHubCorner /> -->
   <div id="splash-bg-fallback" class="absolute inset-0 hidden opacity-40">
     <HeroImage />
   </div>
@@ -20,13 +29,14 @@ const sizes = "(min-width: 640px) 42vw, 67vw";
     <h2
       class="flex flex-col gap-2 self-end sm:gap-4 sm:self-auto sm:justify-self-end"
     >
-      <Icon name="logomark" class="h-24 text-white md:h-32" />
+      <!-- <Icon name="logomark"  class="h-24 text-white md:h-32" /> -->
+
       <div
-        class="gradient-text text-center font-extrabold tracking-tighter text-8xl"
+        class="text-white text-center font-extrabold tracking-tighter text-8xl"
+        id=""
       >
-        Build fast
-        <br /> websites,
-        <br /> faster.
+        VARTIX AEROSPACE
+      
       </div>
     </h2>
     <div
@@ -35,7 +45,7 @@ const sizes = "(min-width: 640px) 42vw, 67vw";
     >
       <Picture
         class="h-full w-full object-cover"
-        src={astronautImage}
+        src={moonImage}
         widths={widths}
         sizes={sizes}
         loading="eager"
@@ -43,6 +53,7 @@ const sizes = "(min-width: 640px) 42vw, 67vw";
       />
     </div>
   </div>
+</div>
 </section>
 
 <noscript>

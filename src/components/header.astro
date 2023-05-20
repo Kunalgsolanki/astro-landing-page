@@ -4,24 +4,29 @@ import ThemeSwitcher from "~/components/theme-switcher.astro";
 import type { NavItem } from "~/types";
 
 const navItems: Array<NavItem> = [
-  { title: "Features", url: "#features" },
-  { title: "Compatibility", url: "#compatibility" },
-  { title: "Showcase", url: "#showcase" },
+  { title: "About", url: "#features" },
+  { title: " Serviece", url: "#compatibility" },
+  { title: " Internship", url: "#showcase" },
 ];
 ---
 
-<header
-  id="page-header"
-  class="absolute bottom-0 z-20 flex w-full items-center justify-between border-b border-transparent px-8 py-4 text-white"
->
+<header id="page-header" class="absolute bottom-0 z-20 flex w-full items-center justify-between border-b border-transparent px-8 py-4 text-white">
   <a class="flex items-center gap-3 hover:!text-default" href="#">
-    <h1 class="sr-only">Astro</h1>
-    <Icon name="logomark" class="h-10" />
-    <Icon name="wordmark" class="hidden h-4 sm:block" />
+    <!-- <h1 class="sr-only">Vartix</h1>
+    <Icon name="vartix" class="h-10" />
+    <Icon name="vartix" class="hidden h-4 sm:block" /> -->
+
+
+        <h1 class="sr-only">Vartix</h1>
+        <img src="https://pps.whatsapp.net/v/t61.24694-24/344783754_1225386311679991_5198727067088026110_n.jpg?ccb=11-4&oh=01_AdR90ElfrqOfvFqof1Wf10u7cPn6HPQdPi_iHauhUlxN6A&oe=646F4999" alt="Icon" class="h-20 rounded-full" />
+        <span class="hidden h-4 sm:block">Vartix</span> <!-- Text as logo -->
+     
+      <!-- Rest of the code... -->
+   
   </a>
   <div>
     <div class="flex items-center gap-6">
-      <nav class="hidden sm:block">
+      <nav class="hidden sm:block top-6">
         <ul class="flex items-center gap-6">
           {
             navItems.map(({ title, url }) => (
@@ -34,12 +39,7 @@ const navItems: Array<NavItem> = [
           }
         </ul>
       </nav>
-      <button
-        id="open-nav-button"
-        type="button"
-        class="btn sm:hidden"
-        aria-label="Navigation"
-      >
+      <button id="open-nav-button" type="button" class="btn sm:hidden" aria-label="Navigation">
         <Icon pack="mdi" name="menu" class="h-8" />
       </button>
       <ThemeSwitcher />
@@ -48,17 +48,12 @@ const navItems: Array<NavItem> = [
       <div class="fixed inset-0 bg-default px-8 py-4 text-default">
         <div class="space-y-4" role="dialog" aria-modal="true">
           <header class="text-right">
-            <button
-              id="close-nav-button"
-              type="button"
-              class="btn"
-              aria-label="Close navigation"
-            >
+            <button id="close-nav-button" type="button" class="btn" aria-label="Close navigation">
               <Icon pack="mdi" name="close" class="h-8" />
             </button>
           </header>
           <div class="flex justify-center">
-            <Icon name="logomark" class="h-16" />
+          
           </div>
           <nav>
             <ul class="flex flex-col">
@@ -78,6 +73,7 @@ const navItems: Array<NavItem> = [
     </div>
   </div>
 </header>
+
 
 <script>
   import MicroModal from "micromodal";
