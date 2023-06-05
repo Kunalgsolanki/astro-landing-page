@@ -1,0 +1,56 @@
+---
+import { Icon } from "astro-icon";
+import ContentSection from "~/components/content-section.astro";
+
+
+import image from "../assets/logo.png";
+---
+
+
+
+
+
+
+
+
+<section class="bg-white dark:bg-black remove-gap">
+    <div class="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
+        <div class="font-light text-gray-500 sm:text-lg dark:text-gray-400">
+            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Vartex  Aerospace</h2>
+            <p class="mb-4"> VartiX Aerospace is Orbital vehicle service providing company and it aims to challenge the long driven problem of space transportation which is the environmental outlook. Also we aim to fill the gap that is generated due to high costing of rocket service and affordability of new upcoming start-ups in India by providing low cost service using reusable technique and in house manufacturing capacity. But we are not just restricted to space. We also provide 3D printing solutions and space education for making youth of India more aware about this exciting industry.</p>
+          
+        </div>
+        <div class="grid grid-cols-2 gap-4 mt-8">
+            <img class="w-full rounded-lg" src="https://pps.whatsapp.net/v/t61.24694-24/344783754_1225386311679991_5198727067088026110_n.jpg?ccb=11-4&oh=01_AdR90ElfrqOfvFqof1Wf10u7cPn6HPQdPi_iHauhUlxN6A&oe=646F4999" alt="office content 1">
+            <img class="mt-4 w-full lg:mt-10 rounded-lg" src="https://images.unsplash.com/photo-1517976487492-5750f3195933?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="office content 2">
+        </div>
+    </div>
+</section> 
+
+
+<style>
+    .remove-gap {
+      padding-left: 0;
+      padding-right: 0;
+      margin-left: -30px;
+      margin-right: -30px;
+      
+        border-bottom: 2px solid #ffff; /* Add thin border to the bottom */
+    }
+    
+    
+    
+    @media (max-width: 768px) {
+      .remove-gap {
+        margin-left: -2rem;
+        margin-right: -2rem;
+        border-top: 2px solid #ffff; /* Add thin border to the top */
+        border-bottom: 2px solid #ffff; /* Add thin border to the bottom */
+      }
+      .font-custom {
+        font-size: 2rem;
+        text-align: center;
+        
+      }
+    }
+    </style>

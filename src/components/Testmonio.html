@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Слайдер с фото</title>
+</head>
+ <style>
+
+  
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: inherit;
+     -moz-box-sizing: inherit;
+          box-sizing: inherit; }
+
+html {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box; }
+
+body {
+  font-size: 100%;
+  font-family: Helvetica, Arial, sans-serif;
+  padding: 0;
+  margin: 0; }
+
+button {
+  border: none; }
+
+
+.slider {
+  width: 100%;
+  background-color: black;
+  padding: 6.6875rem 0 25.9375rem;
+}
+
+.slider__wrapper {
+  width: 100%;
+  max-width: 78.125rem;
+  min-height: 34.5rem;
+  position: relative;
+  margin: 0 auto;
+}
+
+.slider__btns {
+  width: 42.4375rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -moz-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding-right: 3.125rem;
+  margin: 0 0 2.8125rem auto;
+}
+
+.slider__btn {
+  color: #fff;
+  font-size: 0.875rem;
+  line-height: 138%;
+  text-transform: uppercase;
+  padding-bottom: 0.375rem;
+}
+
+.slider__btn:last-child {
+  margin-right: 0;
+}
+
+.slider__btn:hover,
+.slider__btn.active {
+  color: #E3B873;
+  opacity: 1;
+  border-color: #E3B873;
+}
+
+.slider__btn:hover {
+  cursor: pointer;
+}
+
+.slider__btn {
+  opacity: 0.3;
+  border-bottom: 1px solid transparent;
+  -webkit-transition: all 0.6s;
+  -o-transition: all 0.6s;
+  -moz-transition: all 0.6s;
+  transition: all 0.6s;
+}
+
+.slider__content {
+  width: 100%;
+  position: relative;
+}
+
+.slider__slide {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -moz-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -moz-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 3;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: opacity 0.6s ease-in-out;
+  -o-transition: opacity 0.6s ease-in-out;
+  -moz-transition: opacity 0.6s ease-in-out;
+  transition: opacity 0.6s ease-in-out;
+}
+
+.slider__slide.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.slider__text {
+  width: 27.625rem;
+  color: #fff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -moz-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.slider__text-title {
+  width: 17.1875rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+  -moz-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+  font-size: 1.6875rem;
+  line-height: 138%;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  color: #E3B873;
+  position: relative;
+}
+
+.slider__text-title:after {
+  content: '';
+  width: 5.75rem;
+  height: 1px;
+  background-color: #E3B873;
+  margin-bottom: 1rem;
+  margin-left: 0.625rem;
+}
+
+.slider__text>p {
+  margin: 2.125rem 0 3rem;
+  font-family: "NunitoSans-Regular";
+  font-size: 0.875rem;
+  line-height: 190%;
+  max-height: 4.375rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+
+.slider__text-item {
+  width: 11.25rem;
+  margin-bottom: 2.125rem;
+}
+
+.slider__text-item span {
+  display: block;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  color: #E3B873;
+  margin-bottom: 0.6875rem;
+}
+
+.slider__text-item p {
+  width: 80%;
+  max-height: 2.5rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+
+.slider__img {
+  width: 42.4375rem;
+  height: 30.125rem;
+}
+
+.slider__img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.slider__nav {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  bottom: 0;
+}
+
+.slider__arrow {
+  width: 2.625rem;
+  height: auto;
+}
+
+.slider__arrow svg {
+  width: 100%;
+  height: auto;
+  max-height: 0.8125rem;
+  -webkit-transition: all 0.6s;
+  -o-transition: all 0.6s;
+  -moz-transition: all 0.6s;
+  transition: all 0.6s;
+}
+
+.slider__arrow svg.pk {
+  display: block;
+}
+
+.slider__arrow svg.mb {
+  display: none;
+}
+
+@media screen and (max-width: 1080px) {
+  .slider__arrow svg.pk {
+    display: none;
+  }
+
+  .slider__arrow svg.mb {
+    display: block;
+  }
+}
+
+.slider__arrow:hover {
+  cursor: pointer;
+}
+
+.slider__arrow:hover svg {
+  stroke: #E3B873;
+}
+
+.slider__arrow--mb {
+  display: none;
+}
+
+.slider__dots {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 0 1.3125rem;
+}
+
+.slider__dots div {
+  display: block;
+  width: 0.625rem;
+  height: 0.625rem;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  background-color: #fff;
+  opacity: 0.3;
+  margin-top: -1px;
+  margin-left: 0.625vw;
+  margin-right: 0.625vw;
+  -webkit-transition: opacity 0.6s;
+  -o-transition: opacity 0.6s;
+  -moz-transition: opacity 0.6s;
+  transition: opacity 0.6s;
+}
+
+.slider__dots div.active,
+.slider__dots div:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+@media screen and (max-width: 1080px) {
+  .slider__wrapper {
+    position: relative;
+    min-height: inherit;
+  }
+
+  .slider__slider {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+
+  .slider__slide {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+    -webkit-flex-direction: column-reverse;
+    -moz-box-orient: vertical;
+    -moz-box-direction: reverse;
+    -ms-flex-direction: column-reverse;
+    flex-direction: column-reverse;
+    background-color: #131313;
+  }
+
+  .slider__btns {
+    width: 90%;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding-right: 0;
+    margin: 0 auto 2.8125rem;
+  }
+
+  .slider__text {
+    width: 100%;
+    text-align: center;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -moz-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 0 3.125rem;
+    margin-top: 5.625rem;
+  }
+
+  .slider__text-title {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .slider__text-title:after {
+    display: none;
+  }
+
+  .slider__text-item {
+    width: 50%;
+  }
+
+  .slider__img {
+    width: 100%;
+    height: 55.55556vw;
+    margin-top: 3.47222vw;
+  }
+
+  .slider__dots {
+    width: 100%;
+    position: absolute;
+    bottom: inherit;
+    top: 35rem;
+    margin: 0;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+
+  .slider__dots div {
+    margin: 0 0.5rem;
+  }
+
+  .slider__nav {
+    width: 100%;
+  }
+
+  .slider__arrow {
+    width: 2.25rem;
+    height: 2.25rem;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    background-color: #E3B873;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    position: absolute;
+    bottom: inherit;
+    top: 16.7rem;
+    -webkit-transition: all 0.6s;
+    -o-transition: all 0.6s;
+    -moz-transition: all 0.6s;
+    transition: all 0.6s;
+  }
+
+  .slider__arrow:hover {
+    background-color: #dfad5e;
+  }
+
+  .slider__arrow--prev {
+    left: 1.25rem;
+  }
+
+  .slider__arrow--prev svg {
+    margin-left: -5px;
+  }
+
+  .slider__arrow--next {
+    right: 1.25rem;
+  }
+
+  .slider__arrow--next svg {
+    margin-right: -5px;
+  }
+
+  .slider__arrow--mb {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+
+  .slider__arrow--mb svg {
+    width: 1.25rem;
+    height: auto;
+    max-height: 0.9375rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .slider {
+    padding-bottom: 65.875rem;
+  }
+  
+  .slider__wrapper {
+    min-height: 34.5rem;
+  }
+  
+  .slider__arrow {
+    top: -16rem;
+  }
+  
+  .slider__dots {
+    top: -29.5rem;
+  }
+
+  .slider__btns {
+    display: none;
+  }
+
+  .slider__img {
+    height: 62.5vw;
+  }
+}
+ </style>
+
+ <script>
+  let slides = [{
+		title: "Praveg ",
+		description: "We have a 100% successful test in the third attempt for our 1.2 KN engine PRAVEG - 3. It was a blast and onto bigger things now. 🚀",
+		imgUrl: "../assets/logo.mp4",
+		listItems: [{
+				title: "PRAVEG",
+				description: "Roket Engine"
+			},
+			
+		],
+	},
+
+	{
+		title: "Sochi Thieves",
+		description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis obcaecati ipsum corporis ut totam, dolorem excepturi iusto provident. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis obcaecati ipsum corporis ut totam, dolorem excepturi iusto provident.",
+		imgUrl: "https://img1.goodfon.ru/original/1280x1024/3/d3/tonkinskaya-koshka-tonkinez.jpg",
+		listItems: [{
+				title: "City 2",
+				description: "Lorem ipsum dolor sit amet",
+			},
+			{
+				title: "apartment area",
+				description: "111 m<sup>2</sup>",
+			},
+			{
+				title: "Repair time",
+				description: "2 months",
+			},
+			{
+				title: "Repair Cost",
+				description: "Dolor sit amet",
+			}
+		],
+	},
+
+	{
+		title: "Rostov-on-Don Patriotic",
+		description: "3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis obcaecati ipsum corporis ut totam, dolorem excepturi iusto provident!",
+		imgUrl: "https://wallbox.ru/resize/1024x768/wallpapers/main/201344/7b35f698510d272.jpg",
+		listItems: [{
+				title: "City 3",
+				description: "3 Lorem ipsum dolor sit amet",
+			},
+			{
+				title: "apartment area",
+				description: "50 m<sup>2</sup>",
+			},
+			{
+				title: "Repair time",
+				description: "6 months",
+			},
+			{
+				title: "Repair Cost",
+				description: "3 Dolor sit amet",
+			}
+		],
+	},
+
+]
+
+function initSlider() {
+	if (!slides || !slides.length) return;
+
+	let slider = document.querySelector('#slider');
+
+	addSlides();
+	addDots();
+	initNavigation();
+
+	function addSlides() {
+		slides.forEach((slide, index) => {
+			const slideListItems = createListItemsHTML(slide);
+			const slideHTML = createSlideHTML(slide, index, slideListItems);
+			appendSlideToDOM(slideHTML);
+		});
+	}
+
+	function createListItemsHTML(slide) {
+		let slideListItems = '';
+		slide.listItems.forEach((item) => {
+			slideListItems += `<div class="slider__text-item"><span>${item.title}</span><p>${item.description}</p></div>`;
+		});
+		return slideListItems;
+	}
+
+	function createSlideHTML(slide, index, slideListItems) {
+		return `<div class="slider__slide${index === 0 ? " active" : ""}" data-index="${index}"><div class="slider__text"><div class="slider__text-title">${slide.title}</div><p>${slide.description}</p>${slideListItems}</div><div class="slider__img">
+      <video autoplay muted loop class="w-full h-full object-cover">
+      <source src="${slide.imgUrl}" type="video/mp4" />
+    </video>
+      </div></div>
+    
+   
+
+    
+    `;
+	}
+
+	function appendSlideToDOM(slideHTML) {
+		slider.querySelector('.slider__content').innerHTML += slideHTML;
+	}
+
+	function initNavigation() {
+		let nav = slider.querySelectorAll('.slider__nav-element');
+
+		nav.forEach(el => el.addEventListener('click', handleNavigationClick))
+
+		function handleNavigationClick() {
+			let currentSlide = +slider.querySelector('.active').dataset.index;
+			let nextSlideNumber;
+
+			if (this.classList.contains('slider__arrow--prev')) {
+				nextSlideNumber = currentSlide === 0 ? slides.length - 1 : currentSlide - 1
+			} else if (this.classList.contains('slider__arrow--next')) {
+				nextSlideNumber = currentSlide === slides.length - 1 ? 0 : currentSlide + 1
+			} else {
+				nextSlideNumber = +this.dataset.index;
+			}
+
+			switchActiveElements(nextSlideNumber);
+		}
+	}
+
+	function addDots() {
+		let dots = slider.querySelector('.slider__dots');
+		for (let i = 0; i < slides.length; i++) {
+			dots.innerHTML += `<div class="slider__nav-element${i === 0 ? ' active' : '' }" data-index="${i}"></div>`;
+		}
+	}
+
+	function switchActiveElements(index) {
+		slider.querySelectorAll('.active').forEach(element => {
+			element.classList.remove('active');
+		})
+		slider.querySelectorAll(`[data-index="${index}"]`).forEach(element => {
+			element.classList.add('active');
+		})
+	}
+
+}
+
+document.addEventListener('DOMContentLoaded', initSlider);
+ </script>
+<body>
+  <main>
+    <section class="slider" id="slider">
+      <div class="slider__wrapper">
+        <div class="slider__btns">
+          <div class="slider__btn slider__nav-element active" data-index="0">Rostov-on-Don, Admiral</div>
+          <div class="slider__btn slider__nav-element" data-index="1">Sochi Thieves</div>
+          <div class="slider__btn slider__nav-element" data-index="2">Rostov-on-Don Patriotic</div>
+        </div>
+        <div class="slider__content"></div>
+        <div class="slider__nav">
+          <div class="slider__arrow slider__arrow--prev slider__nav-element">
+            <svg width="42" height="14" viewBox="0 0 42 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="pk"><path fill-rule="evenodd" clip-rule="evenodd" d="M6.63807 13.2761L2.29917e-05 6.63808L6.63807 3.80641e-05L7.58563 0.947606L1.89516 6.63808L7.58563 12.3286L6.63807 13.2761Z" fill="white" /><path fill-rule="evenodd" clip-rule="evenodd" d="M0.947579 5.96828L41.4556 5.96829L41.4556 7.30835L0.947578 7.30834L0.947579 5.96828Z" fill="white" /></svg>
+            <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb"><path fill-rule="evenodd" clip-rule="evenodd" d="M6.56569 12.478L1.08689 6.99975L6.56569 1.52147L7.34778 2.30348L2.65107 6.99975L7.34778 11.696L6.56569 12.478Z" fill="white" stroke="white" stroke-width="0.75" /></svg>
+          </div>
+          <div class="slider__dots"></div>
+          <div class="slider__arrow slider__arrow--next slider__nav-element">
+            <svg width="42" height="14" viewBox="0 0 42 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="pk"> <path fill-rule="evenodd" clip-rule="evenodd" d="M35.0451 0L41.6831 6.63804L35.0451 13.2761L34.0975 12.3285L39.788 6.63804L34.0975 0.947567L35.0451 0Z" fill="white" /><path fill-rule="evenodd" clip-rule="evenodd" d="M40.7356 7.30784L0.227569 7.30784L0.22757 5.96777L40.7356 5.96778L40.7356 7.30784Z" fill="white" /></svg>
+            <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.43431 1.52197L6.91311 7.00025L1.43431 12.4785L0.652222 11.6965L5.34894 7.00025L0.652222 2.30399L1.43431 1.52197Z" fill="white" stroke="white" stroke-width="0.75" /></svg>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+
+</html>

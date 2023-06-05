@@ -15,6 +15,8 @@ export default defineConfig({
       external: ["svgo"]
     }
   },
+   
+  
   plugins: [{
    
     // Enable the Astro Sass plugin

@@ -1,0 +1,251 @@
+<script>
+/***********
+  Copyright 2020 by James Wagner.
+  All rights reserved.
+***********/
+
+var slides = document.querySelectorAll(".slide");
+
+var scrollPos = 0;
+
+window.addEventListener('wheel', function(e) {
+  var scroller = document.querySelector(".scroller");
+  
+  if (e.deltaY > 0) {
+    if (scrollPos < window.innerWidth * 0.6 * slides.length) scrollPos += 100;
+  } else {
+    if (scrollPos != 0) scrollPos -= 100;
+  }
+  
+  //var scroller = document.querySelector(".scroller");
+  //scroller.scrollTo(scrollPos, 0);
+  
+  
+  slides.forEach((slide, index) => {
+    
+    /*if (slide == slides[slides.length - 1]) {
+ 
+      if (window.innerWidth * 0.8 * slides.length < scrollPos) {
+        return;
+      }
+    }*/
+    
+    //console.log(slide);
+    let photo = slide.querySelector(".photo");
+    let text = slide.querySelector(".text");
+    photo.style.transform = `translateX(-${scrollPos}px)`;
+    text.style.transform = `translateX(-${scrollPos}px)`;
+  });
+});
+
+
+// gesture detect
+document.addEventListener('touchstart', handleTouchStart, false);        
+document.addEventListener('touchmove', handleTouchMove, false);
+
+var xDown = null;                                                        
+var yDown = null;
+
+function getTouches(evt) {
+  return evt.touches ||             // browser API
+         evt.originalEvent.touches; // jQuery
+}                                                     
+
+function handleTouchStart(evt) {
+    const firstTouch = getTouches(evt)[0];                                      
+    xDown = firstTouch.clientX;                                      
+    yDown = firstTouch.clientY;                                      
+};                                                
+
+function handleTouchMove(evt) {
+    if ( ! xDown || ! yDown ) {
+        return;
+    }
+
+    var xUp = evt.touches[0].clientX;                                    
+    var yUp = evt.touches[0].clientY;
+
+    var xDiff = xDown - xUp;
+    var yDiff = yDown - yUp;
+
+    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {
+        if ( xDiff > 0 ) {
+            if (scrollPos < window.innerWidth * 0.6 * slides.length) scrollPos += 100;
+        } else {
+            if (scrollPos != 0) scrollPos -= 100;
+        }   
+      
+      slides.forEach((slide, index) => {
+    
+        /*if (slide == slides[slides.length - 1]) {
+
+          if (window.innerWidth * 0.8 * slides.length < scrollPos) {
+            return;
+          }
+        }*/
+
+        //console.log(slide);
+        let photo = slide.querySelector(".photo");
+        let text = slide.querySelector(".text");
+        photo.style.transform = `translateX(-${scrollPos}px)`;
+        text.style.transform = `translateX(-${scrollPos}px)`;
+      });
+      
+    } 
+    /* reset values */
+    xDown = null;
+    yDown = null;                                             
+};
+
+</script>
+
+<p>JW Slider</p>
+<div class="wrapper">
+  <div class="scroller">
+    <div class="slide">
+      <div class="photo">
+        <img src="https://images.unsplash.com/photo-1582520632092-410a5f4baa95?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="">
+      </div>
+      <div class="text">
+        <h2>The Road</h2>
+        <span>Photography - Documentation</span>
+      </div>
+    </div>
+    
+    <div class="slide">
+      <div class="photo">
+        <img src="https://images.unsplash.com/photo-1558981359-219d6364c9c8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="">
+      </div>
+      <div class="text">
+        <h2>Harleys</h2>
+        <span>Photography - Motorsports</span>
+      </div>
+    </div>
+    
+    <div class="slide">
+      <div class="photo">
+        <img src="https://images.unsplash.com/photo-1433162653888-a571db5ccccf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="">
+      </div>
+      <div class="text">
+        <h2>Sweet Dogs</h2>
+        <span>Photography - Animals</span>
+      </div>
+    </div>
+    
+    <div class="slide">
+      <div class="photo">
+        <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="">
+      </div>
+      <div class="text">
+        <h2>The Strong</h2>
+        <span>Photography - Sports</span>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+
+<style>
+  body {
+  background: #12111F;
+  margin: 0;
+  padding: 0;
+}
+p {
+  font-size: 50px;
+  color: #eee;
+  margin-left: 150px;
+  margin-top: 100px;
+  margin-bottom: 0;
+}
+
+.wrapper {
+  width: 100%;
+  height: 70vh;
+  overflow: hidden;
+}
+.wrapper > .scroller {
+  width: auto;
+  height: calc(70vh + 20px);
+  overflow: auto;
+  display: flex;
+  /*scroll-behavior: smooth;*/
+}
+
+.slide {
+  width: 60vw;
+  height: 60vh;
+  margin-top: 5vh;
+  margin-left: 10vw;
+  margin-right: 10vw;
+  position: relative;
+  transition: 1s ease;
+}
+.slide > .photo {
+  width: inherit;
+  height: inherit;
+  transition: 1s ease;
+}
+.slide > .photo:before {
+  content: '';
+  position: absolute;
+  color: #fff;
+  transform: rotate(-90deg);
+  top: 40px;
+  left: -60px;
+}
+
+/* slide number definition starts */
+
+.slide:nth-child(1) > .photo:before {
+  content: '01 _____ 06';
+}
+
+.slide:nth-child(2) > .photo:before {
+  content: '02 _____ 06';
+}
+
+.slide:nth-child(3) > .photo:before {
+  content: '03 _____ 06';
+}
+
+.slide:nth-child(4) > .photo:before {
+  content: '04 _____ 06';
+}
+
+.slide:nth-child(5) > .photo:before {
+  content: '05 _____ 06';
+}
+
+.slide:nth-child(6) > .photo:before {
+  content: '06 _____ 06';
+}
+
+/* Slide number definition ends */
+
+.slide > .photo > img {
+  width: 100%;
+  height: 100%;
+}
+.slide > .text {
+  position: absolute;
+  right: -50px;
+  bottom: 20%;
+  color: white;
+  font-size: 80px;
+  font-family: arial, sans-serif;
+  line-height: 50px;
+  transition: .8s ease;
+}
+.slide > .text > h2 {
+  font-size: 75px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+.slide > .text > span {
+  font-size: 20px;
+  line-height: 20px;
+}
+
+</style>

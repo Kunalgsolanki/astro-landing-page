@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+  var slide = document.querySelectorAll(".slide");
+  var viewWidth = window.innerWidth;
+  var sliderInner = document.querySelector(".slider-inner");
+  var childrenNo = sliderInner.children.length;
+
+  sliderInner.style.width = viewWidth * childrenNo + "px";
+
+  window.addEventListener("resize", function() {
+    viewWidth = window.innerWidth;
+  });
+
+  function setWidth() {
+    slide.forEach(function(element, index) {
+      element.style.width = viewWidth + "px";
+      element.style.left = viewWidth * index + "px";
+    });
+  }
+
+  function setActive(element) {
+    var clickedIndex = Array.from(element.parentNode.children).indexOf(element);
+
+    var activeNav = document.querySelector(".slider-nav .active");
+    activeNav.classList.remove("active");
+    element.classList.add("active");
+
+    sliderInner.style.transform = "translateX(-" + clickedIndex * viewWidth + "px) translateZ(0)";
+
+    var activeSlide = document.querySelector(".slider-inner .active");
+    activeSlide.classList.remove("active");
+    document.querySelectorAll(".slider-inner .slide")[clickedIndex].classList.add("active");
+  }
+
+  setWidth();
+
+  var sliderNavItems = document.querySelectorAll(".slider-nav > div");
+  sliderNavItems.forEach(function(item) {
+    item.addEventListener("click", function() {
+      setActive(this);
+    });
+  });
+
+  window.addEventListener("resize", function() {
+    setWidth();
+  });
+
+  setTimeout(function() {
+    var slider = document.querySelector(".slider");
+    slider.style.display = "block";
+    slider.style.opacity = "1";
+  }, 2000);
+});
+
+</script>
+<body>
+  <nav class="nav">
+	<h1>Gummy slider</h1>
+	<p class="author">by Lewi Hussey</p>
+</nav>
+
+<div class="loading">
+	Loading...
+</div>
+
+<div class="slider">
+	<div class="slider-inner">
+		<div class="slide active">1</div>
+		<div class="slide">2</div>
+		<div class="slide">3</div>
+		<div class="slide">4</div>
+		<div class="slide">5</div>
+		<div class="slide">6</div>
+		<div class="slide">7</div>
+		<div class="slide">8</div>
+	</div>
+	
+	<nav class="slider-nav">
+		<div class="active"></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</nav>
+</div>
+</body>
+</html>
