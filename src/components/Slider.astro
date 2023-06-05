@@ -99,16 +99,16 @@ function handleTouchMove(evt) {
 
 </script>
 
-<p>JW Slider</p>
+<p> Our successful mission</p>
 <div class="wrapper">
   <div class="scroller">
     <div class="slide">
       <div class="photo">
-        <img src="https://images.unsplash.com/photo-1582520632092-410a5f4baa95?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="">
+        <img src="https://vui.unsplash.com/resize?height=256&quality=60&type=auto&url=https%3A%2F%2Fsearched-images.s3.us-west-2.amazonaws.com%2F2aea3a40-96c5-438b-8fe7-a9c0b3b61e4b%3FX-Amz-Algorithm%3DAWS4-HMAC-SHA256%26X-Amz-Credential%3DAKIAQ4GRIA4Q6KECABEK%252F20230605%252Fus-west-2%252Fs3%252Faws4_request%26X-Amz-Date%3D20230605T045619Z%26X-Amz-Expires%3D86400%26X-Amz-SignedHeaders%3Dhost%26X-Amz-Signature%3D5bd5c73acacafb00f67741eb4c6576c03c9ddb56363bf96b5a53544c154e278e&sign=f_ltERLlt8cg0A5ks5S2iCHgYmW2VBIp5CJinNz2p_4" alt="">
       </div>
       <div class="text">
-        <h2>The Road</h2>
-        <span>Photography - Documentation</span>
+        <h2>Praveg</h2>
+        <span> Our first Rocket Lounch</span>
       </div>
     </div>
     
@@ -246,6 +246,55 @@ p {
 .slide > .text > span {
   font-size: 20px;
   line-height: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  p {
+    font-size: 20px;
+  }
+
+  .wrapper {
+    height: 70vh;
+  }
+
+  .slide {
+    width: 90vw;
+    height: 60vh;
+    margin-top: 5vh;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    position: relative;
+    transition: 1s ease;
+  }
+
+  .slide > .photo:before {
+    content: '';
+    position: absolute;
+    color: #fff;
+    transform: rotate(-90deg);
+    top: 20px;
+    left: -40px;
+  }
+
+  .slide > .text {
+    position: absolute;
+    right: -20px;
+    bottom: 20%;
+    color: white;
+    font-size: 30px;
+    font-family: arial, sans-serif;
+    line-height: 25px;
+    transition: .8s ease;
+  }
+
+  .slide > .text > h2 {
+    font-size: 35px;
+  }
+
+  .slide > .text > span {
+    font-size: 10px;
+    line-height: 10px;
+  }
 }
 
 </style>
